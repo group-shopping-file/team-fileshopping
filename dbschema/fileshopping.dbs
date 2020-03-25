@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fileshopping" id="Project_28c5d41" template="Default" database="MySql" >
+	<schema name="fileshopping" >
+		<table name="articles" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<column name="demo" type="text" jt="-1" mandatory="y" />
+			<column name="body" type="text" jt="-1" mandatory="y" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_articles_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_articles_users" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<fk name="fk_articles_users_0" to_schema="fileshopping" to_table="users" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+		</table>
+		<table name="baskets" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<column name="product_id" type="int" jt="4" mandatory="y" />
+			<column name="price" type="int" jt="4" mandatory="y" />
+			<column name="status" type="char" length="1" jt="1" >
+				<defo>0</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_basket_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_basket_products" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<index name="fk_baskets_users" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<fk name="fk_basket_products" to_schema="fileshopping" to_table="products" delete_action="cascade" update_action="cascade" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="fk_baskets_users_0" to_schema="fileshopping" to_table="users" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+		</table>
+		<table name="categories" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="chid" type="int" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="fa_name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="en_name" type="varchar" length="100" jt="12" />
+			<column name="image" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" />
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" />
+			<index name="pk_categories_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="comments" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<column name="product_id" type="int" jt="4" mandatory="y" />
+			<column name="body" type="text" length="250" jt="-1" mandatory="y" />
+			<column name="verified" type="char" length="0" jt="1" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="date" jt="91" />
+			<index name="pk_comments_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_comments_users" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<index name="fk_comments_products" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<fk name="fk_comments_products" to_schema="fileshopping" to_table="products" delete_action="cascade" update_action="cascade" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="fk_comments_users_0" to_schema="fileshopping" to_table="users" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+		</table>
+		<table name="factor_product" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="factor_id" type="int" jt="4" mandatory="y" />
+			<column name="product_id" type="int" jt="4" mandatory="y" />
+			<index name="fk_factor_product_factors" unique="NORMAL" >
+				<column name="factor_id" />
+			</index>
+			<index name="fk_factor_product_products" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<fk name="fk_factor_product_factors" to_schema="fileshopping" to_table="factors" delete_action="cascade" update_action="cascade" >
+				<fk_column name="factor_id" pk="id" />
+			</fk>
+			<fk name="fk_factor_product_products" to_schema="fileshopping" to_table="products" delete_action="cascade" update_action="cascade" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+		</table>
+		<table name="factors" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<column name="sum" type="int" jt="4" mandatory="y" />
+			<column name="status" type="char" length="1" jt="1" >
+				<defo>0</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_factor_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_factors_users" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<fk name="fk_factors_users_0" to_schema="fileshopping" to_table="users" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+		</table>
+		<table name="failed_jobs" >
+			<column name="id" type="bigint" length="20" decimal="0" jt="-5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="connection" type="text" length="65535" decimal="0" jt="-1" mandatory="y" />
+			<column name="queue" type="text" length="65535" decimal="0" jt="-1" mandatory="y" />
+			<column name="payload" type="longtext" length="2147483647" decimal="0" jt="-1" mandatory="y" />
+			<column name="exception" type="longtext" length="2147483647" decimal="0" jt="-1" mandatory="y" />
+			<column name="failed_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<index name="pk_failed_jobs" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="genders" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="fa_name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="en_name" type="varchar" length="100" jt="12" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" />
+			<index name="pk_genders_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="migrations" >
+			<column name="id" type="int" length="10" decimal="0" jt="4" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="migration" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="batch" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="pk_migrations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="password_resets" >
+			<column name="email" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="token" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" />
+			<index name="password_resets_email_index" unique="NORMAL" >
+				<column name="email" options="ASC" />
+			</index>
+		</table>
+		<table name="payments" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="factor_id" type="int" jt="4" mandatory="y" />
+			<column name="trackingcode" type="int" jt="4" mandatory="y" />
+			<column name="status" type="char" length="1" jt="1" >
+				<defo>0</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_payments_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_payments_factors" unique="NORMAL" >
+				<column name="factor_id" />
+			</index>
+			<fk name="fk_payments_factors" to_schema="fileshopping" to_table="factors" delete_action="cascade" update_action="cascade" >
+				<fk_column name="factor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="permission_role" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="permission_id" type="int" jt="4" mandatory="y" />
+			<column name="role_id" type="int" jt="4" mandatory="y" />
+			<index name="fk_permission_role_permissions" unique="NORMAL" >
+				<column name="permission_id" />
+			</index>
+			<index name="fk_permission_role_roles" unique="NORMAL" >
+				<column name="role_id" />
+			</index>
+			<fk name="fk_permission_role_roles" to_schema="fileshopping" to_table="roles" delete_action="cascade" update_action="cascade" >
+				<fk_column name="role_id" pk="id" />
+			</fk>
+			<fk name="fk_permission_role_permissions" to_schema="fileshopping" to_table="permissions" delete_action="cascade" update_action="cascade" >
+				<fk_column name="permission_id" pk="id" />
+			</fk>
+		</table>
+		<table name="permissions" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="fa_name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="en_name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_permissions_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="producers" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_producers_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="products" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="producer_id" type="int" jt="4" mandatory="y" />
+			<column name="category_id" type="int" jt="4" mandatory="y" />
+			<column name="type_id" type="int" jt="4" mandatory="y" />
+			<column name="price" type="int" jt="4" mandatory="y" />
+			<column name="status" type="char" length="1" jt="1" mandatory="y" >
+				<defo>1</defo>
+			</column>
+			<column name="special" type="char" length="1" jt="1" >
+				<defo>0</defo>
+			</column>
+			<column name="sales_number" type="int" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="discount" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<column name="image" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="file_address" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="body" type="text" jt="-1" />
+			<column name="download_number" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<column name="click_number" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_products_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_products_categories" unique="NORMAL" >
+				<column name="category_id" />
+			</index>
+			<index name="fk_products_producers" unique="NORMAL" >
+				<column name="producer_id" />
+			</index>
+			<index name="fk_products_types" unique="NORMAL" >
+				<column name="type_id" />
+			</index>
+			<fk name="fk_products_categories" to_schema="fileshopping" to_table="categories" delete_action="cascade" update_action="cascade" >
+				<fk_column name="category_id" pk="id" />
+			</fk>
+			<fk name="fk_products_producers" to_schema="fileshopping" to_table="producers" delete_action="cascade" update_action="cascade" >
+				<fk_column name="producer_id" pk="id" />
+			</fk>
+			<fk name="fk_products_types" to_schema="fileshopping" to_table="types" delete_action="cascade" update_action="cascade" >
+				<fk_column name="type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="ratings" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<column name="product_id" type="int" jt="4" mandatory="y" />
+			<column name="rating" type="int" jt="4" mandatory="y" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_ratings_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_ratings_products" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<index name="fk_ratings_users" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<fk name="fk_ratings_products" to_schema="fileshopping" to_table="products" delete_action="cascade" update_action="cascade" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="fk_ratings_users" to_schema="fileshopping" to_table="users" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+		</table>
+		<table name="role_user" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="role_id" type="int" jt="4" mandatory="y" />
+			<column name="user_id" type="int" jt="4" mandatory="y" />
+			<index name="fk_role_user_roles" unique="NORMAL" >
+				<column name="role_id" />
+			</index>
+			<index name="fk_role_user_users" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<fk name="fk_role_user_roles" to_schema="fileshopping" to_table="roles" delete_action="cascade" update_action="cascade" >
+				<fk_column name="role_id" pk="id" />
+			</fk>
+			<fk name="fk_role_user_users" to_schema="fileshopping" to_table="users" delete_action="cascade" update_action="cascade" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+		</table>
+		<table name="roles" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="fa_name" type="varchar" length="100" jt="12" />
+			<column name="en_name" type="varchar" length="100" jt="12" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_roles_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="slider_parents" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="fa_name" type="varchar" length="100" jt="12" />
+			<column name="en_name" type="varchar" length="100" jt="12" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_slider_parents_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="sliders" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="url" type="varchar" length="100" jt="12" />
+			<column name="slider_parent_id" type="int" jt="4" mandatory="y" />
+			<column name="title" type="varchar" length="100" jt="12" />
+			<column name="image" type="varchar" length="100" jt="12" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_sliders_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_sliders_slider_parents" unique="NORMAL" >
+				<column name="slider_parent_id" />
+			</index>
+			<fk name="fk_sliders_slider_parents" to_schema="fileshopping" to_table="slider_parents" delete_action="cascade" update_action="cascade" >
+				<fk_column name="slider_parent_id" pk="id" />
+			</fk>
+		</table>
+		<table name="types" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="created_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>current_timestamp()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="19" decimal="0" jt="93" mandatory="y" >
+				<defo>&#039;0000-00-00 00:00:00&#039;</defo>
+			</column>
+			<index name="pk_types_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="users" >
+			<options><![CDATA[engine=InnoDB]]></options>
+			<column name="id" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="name" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="email" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="password" type="varchar" length="100" jt="12" mandatory="y" />
+			<column name="gender_id" type="int" jt="4" />
+			<column name="lastlogin" type="timestamp" jt="93" />
+			<column name="email_verified_at" type="timestamp" length="19" decimal="0" jt="93" />
+			<column name="remember_token" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="created_at" type="timestamp" jt="93" />
+			<column name="updated_at" type="timestamp" jt="93" />
+			<index name="pk_users_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="users_email_unique" unique="UNIQUE" >
+				<column name="email" />
+			</index>
+			<index name="fk_users_genders" unique="NORMAL" >
+				<column name="gender_id" />
+			</index>
+			<fk name="fk_users_genders" to_schema="fileshopping" to_table="genders" delete_action="cascade" update_action="cascade" >
+				<fk_column name="gender_id" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="fileshopping" database="MySql" driver_class="com.mysql.jdbc.Driver" driver_jar="mysql-connector-java-8.0.18.jar" driver_desc="Standard" host="localhost" port="3306" instance="fileshopping" user="root" />
+	<connector name="fileshopping" database="MySql" driver_class="com.mysql.jdbc.Driver" driver_jar="mysql-connector-java-8.0.18.jar" driver_desc="Standard" host="localhost" port="3306" instance="fileshopping" user="root" />
+	<layout name="Default Layout" id="Layout_45364d7" show_relation="columns" >
+		<entity schema="fileshopping" name="permission_role" color="C1D8EE" x="704" y="96" />
+		<entity schema="fileshopping" name="factor_product" color="C1D8EE" x="400" y="656" />
+		<entity schema="fileshopping" name="products" color="C1D8EE" x="144" y="272" />
+		<entity schema="fileshopping" name="permissions" color="C1D8EE" x="864" y="288" />
+		<entity schema="fileshopping" name="genders" color="C1D8EE" x="512" y="48" />
+		<entity schema="fileshopping" name="producers" color="C1D8EE" x="80" y="96" />
+		<entity schema="fileshopping" name="migrations" color="3986C1" x="1040" y="800" />
+		<entity schema="fileshopping" name="password_resets" color="3986C1" x="1024" y="624" />
+		<entity schema="fileshopping" name="failed_jobs" color="3986C1" x="1024" y="176" />
+		<entity schema="fileshopping" name="types" color="C1D8EE" x="384" y="512" />
+		<entity schema="fileshopping" name="slider_parents" color="C1D8EE" x="96" y="704" />
+		<entity schema="fileshopping" name="payments" color="C1D8EE" x="640" y="704" />
+		<entity schema="fileshopping" name="roles" color="C1D8EE" x="624" y="240" />
+		<entity schema="fileshopping" name="users" color="C1D8EE" x="816" y="672" />
+		<entity schema="fileshopping" name="articles" color="C1D8EE" x="336" y="768" />
+		<entity schema="fileshopping" name="factors" color="C1D8EE" x="816" y="960" />
+		<entity schema="fileshopping" name="ratings" color="C1D8EE" x="848" y="480" />
+		<entity schema="fileshopping" name="comments" color="C1D8EE" x="624" y="416" />
+		<entity schema="fileshopping" name="baskets" color="C1D8EE" x="1008" y="416" />
+		<entity schema="fileshopping" name="role_user" color="C1D8EE" x="480" y="192" />
+		<entity schema="fileshopping" name="categories" color="C1D8EE" x="400" y="320" />
+		<entity schema="fileshopping" name="sliders" color="C1D8EE" x="48" y="880" />
+	</layout>
+</project>
