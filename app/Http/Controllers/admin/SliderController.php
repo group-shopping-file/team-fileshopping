@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Slider;
-use App\SliderParent;
+use App\Sliderparent;
 use Illuminate\Http\Request;
 
 class SliderController extends AdminController
@@ -16,7 +16,7 @@ class SliderController extends AdminController
      */
     public function index()
     {
-      $parents = SliderParent::get();
+      $parents = Sliderparent::get();
       $sliders = Slider::latest()->paginate(10);
       return view('admin.slider.index', compact('sliders'));
     }
@@ -28,7 +28,7 @@ class SliderController extends AdminController
      */
     public function create()
     {
-      $parents = SliderParent::get();
+      $parents = Sliderparent::get();
       return view('admin.slider.create', compact('parents'));
     }
 
@@ -52,7 +52,7 @@ class SliderController extends AdminController
       $slider = Slider::create([
         'title'=>$request['title'],
         'url'=>$request['url'],
-        'slider_parent_id'=>$request['slider_parent_id'],
+        'sliderparent_id'=>$request['sliderparent_id'],
         'image'=>$image,
       ]);
       return redirect(route('slider.index'));
@@ -77,7 +77,7 @@ class SliderController extends AdminController
      */
     public function edit(Slider $slider)
     {
-      $parents = SliderParent::get();
+      $parents = Sliderparent::get();
         return view('admin.slider.edit', compact('slider','parents'));
     }
 

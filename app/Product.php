@@ -8,7 +8,7 @@ class Product extends Model
 {
   protected $fillable = [
       'name', 'producer_id', 'category_id', 'type_id', 'price', 'status', 'special',
-      'sales_number', 'discount', 'image', 'file_address', 'body', 'download_number', 'click_number',
+      'sales_number', 'discount', 'image', 'file', 'body', 'download_number', 'click_number',
   ];
 
   public function producer(){

@@ -21,12 +21,12 @@
 
           <div class="form-group">
             <label for="exampleInputEmail1">والد</label>
-            <select class="form-control" name="slider_parent_id">
+            <select class="form-control" name="sliderparent_id">
               <?php foreach ($parents as $parent): ?>
-                <option value="{{$parent->id}}">{{$parent->name}}</option>
+                <option value="{{$parent->id}}">{{$parent->fa_name}}</option>
               <?php endforeach; ?>
             </select>
-            
+
           </div>
 
           <div class="form-group">

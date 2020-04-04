@@ -2,7 +2,7 @@
 @section('content')
 <div class="box">
   <div class="box-header">
-    <h3 class="box-title">ویرایش {{$sliderParent->name}}</h3>
+    <h3 class="box-title">ویرایش {{$sliderparent->fa_name}}</h3>
   </div>
   <!-- /.box-header -->
   <div class="col-md-12">
@@ -13,18 +13,18 @@
       </div>
       <!-- /.box-header -->
       <!-- form start -->
-      <form role="form" method="post" enctype="multipart/form-data" action="{{route('sliderparent.update', ['sliderParent'=>$sliderParent->id])}}">
+      <form role="form" method="post" enctype="multipart/form-data" action="{{route('sliderparent.update', ['sliderparent'=>$sliderparent->id])}}">
         {{csrf_field()}}
         {{method_field('PATCH')}}
         <div class="box-body">
           <div class="form-group">
             <label for="exampleInputEmail1">نام</label>
-            <input name="name" type="text" class="form-control" id="exampleInputEmail1" value="{{$sliderParent->name}}">
+            <input name="fa_name" type="text" class="form-control" id="exampleInputEmail1" value="{{$sliderparent->fa_name}}">
           </div>
 
           <div class="form-group">
             <label for="exampleInputEmail1">نام انگلیسی</label>
-            <input name="en_name" type="text" class="form-control" id="exampleInputEmail1" value="{{$sliderParent->en_name}}">
+            <input name="en_name" type="text" class="form-control" id="exampleInputEmail1" value="{{$sliderparent->en_name}}">
           </div>
 
 

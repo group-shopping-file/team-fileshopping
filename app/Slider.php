@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
   protected $fillable = [
-    'title', 'url', 'image', 'slider_parent_id',
+    'title', 'url', 'image', 'sliderparent_id',
   ];
 
-  public function slider_parent(){
-    return $this->belongsTo(SliderParent::class);
+  public function sliderparent(){
+    return $this->belongsTo(Sliderparent::class);
   }
 }

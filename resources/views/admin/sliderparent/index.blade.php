@@ -48,7 +48,7 @@
             <tbody>
               <?php foreach ($parents as $parent): ?>
                 <tr role="row" class="odd">
-                  <td class="sorting_1">{{$parent->name}}</td>
+                  <td class="sorting_1">{{$parent->fa_name}}</td>
                   <td class="sorting_1">{{$parent->en_name}}</td>
                   <td>
                       <a href="{{route('sliderparent.edit', ['sliderparent'=>$parent->id])}}" type="button" class="btn btn-block btn-warning">ویرایش</a>

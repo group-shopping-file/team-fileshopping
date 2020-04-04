@@ -36,14 +36,14 @@
               <tr role="row">
                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 140.7px;" aria-sort="ascending" aria-label="نام محصول: activate to sort column descending">نام محصول</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="دسته‌بندی: activate to sort column ascending">دسته‌بندی</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 269.483px;" aria-label="شرکت سازنده: activate to sort column ascending">شرکت سازنده</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 269.483px;" aria-label="تولیدکننده: activate to sort column ascending">تولیدکننده</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 269.483px;" aria-label="توضیحات: activate to sort column ascending">توضیحات</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 258.683px;" aria-label="قیمت: activate to sort column ascending">قیمت</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 68.7833px;" aria-label="تخفیف: activate to sort column ascending">تخفیف</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="موجودی: activate to sort column ascending">موجودی</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="وضعیت محصول: activate to sort column ascending">وضعیت محصول</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="تعداد فروش: activate to sort column ascending">تعداد فروش</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="تعداد فروش: activate to sort column ascending">تعداد دانلود</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="تصویر: activate to sort column ascending">تصویر</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="گالری تصاویر: activate to sort column ascending">گالری تصاویر</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="حذف: activate to sort column ascending">ویرایش</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 73.35px;" aria-label="حذف: activate to sort column ascending">حذف</th>
               </tr>
@@ -52,22 +52,16 @@
               <?php foreach ($products as $product): ?>
                 <tr role="row" class="odd">
                   <td class="sorting_1">{{$product->name}}</td>
-                  <td>
-                    {{$product->category->title_fa}}
-                  </td>
-                  <td>
-                    {{$product->brand->name}}
-                  </td>
+                  <td>{{$product->category->fa_name}}</td>
+                  <td>{{$product->producer->name}}</td>
                   <td>{{$product->body}}</td>
                   <td>{{number_format($product->price)}}</td>
                   <td>{{$product->discount}}</td>
-                  <td>{{$product->count}}</td>
                   <td>{{$product->status}}</td>
+                  <td>{{$product->sales_number}}</td>
+                  <td>{{$product->download_number}}</td>
                   <td>
                     <img src="/{{$product->image}}" alt="تصویر محصول" style="width:50px; height:50px">
-                  </td>
-                  <td>
-                      <a href="/admin/product/gallery?id={{$product->id}}" type="button" class="btn btn-block btn-info">گالری تصاویر</a>
                   </td>
                   <td>
                       <a href="{{route('product.edit', ['product'=>$product->id])}}" type="button" class="btn btn-block btn-warning">ویرایش</a>

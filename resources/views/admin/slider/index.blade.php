@@ -50,7 +50,7 @@
               <?php foreach ($sliders as $slider): ?>
                 <tr role="row" class="odd">
                   <td class="sorting_1">{{$slider->title}}</td>
-                  <td>{{$slider->slider_parent->name}}</td>
+                  <td>{{$slider->sliderparent->fa_name}}</td>
                   <td>{{$slider->url}}</td>
                   <td>
                     <img src="/{{$slider->image}}" alt="تصویر اسلاید" style="width:50px; height:50px">

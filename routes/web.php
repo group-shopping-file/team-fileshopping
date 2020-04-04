@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'IndexController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -28,5 +25,5 @@ Route::group(['namespace'=>'admin','middleware'=>['auth'],'prefix'=>'/admin'],fu
   Route::resource('/producer', 'ProducerController');
   Route::resource('/slider', 'SliderController');
   Route::resource('/filter', 'FilterController');
-  Route::resource('/sliderparent', 'Slider_parentController');
+  Route::resource('/sliderparent', 'SliderparentController');
 });

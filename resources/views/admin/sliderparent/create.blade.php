@@ -16,7 +16,7 @@
         <div class="box-body">
           <div class="form-group">
             <label for="exampleInputEmail1">نام</label>
-            <input name="name" type="text" class="form-control" id="exampleInputEmail1" value="{{old('name')}}">
+            <input name="fa_name" type="text" class="form-control" id="exampleInputEmail1" value="{{old('fa_name')}}">
           </div>
 
           <div class="form-group">

@@ -22,15 +22,15 @@
             <label for="exampleInputPassword1">دسته‌بندی محصول</label>
              <select class="form-control" name="category">
                <?php foreach ($categories as $category): ?>
-                 <option value="{{$category->id}}">{{$category->title_fa}}</option>
+                 <option value="{{$category->id}}">{{$category->fa_name}}</option>
                <?php endforeach; ?>
              </select>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">شرکت سازنده</label>
-             <select class="form-control" name="brand">
-               <?php foreach ($brands as $brand): ?>
-                 <option value="{{$brand->id}}">{{$brand->name}}</option>
+            <label for="exampleInputPassword1">تولیدکننده</label>
+             <select class="form-control" name="producer">
+               <?php foreach ($producers as $producer): ?>
+                 <option value="{{$producer->id}}">{{$producer->name}}</option>
                <?php endforeach; ?>
              </select>
           </div>
@@ -42,18 +42,14 @@
             <label for="exampleInputPassword1">تخفیف</label>
             <input name="discount" type="text" class="form-control" id="exampleInputPassword1"  value="{{old('discount')}}">
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">تعداد موجودی</label>
-            <input name="count" type="text" class="form-control" id="exampleInputPassword1"  value="{{old('count')}}">
-          </div>
-          <label for="exampleInputPassword1">وضعیت محصول</label>
-          <div class="form-group">
-            <input name="status" type="checkbox" id="exampleInputPassword1"  value="1" checked>موجود
-          </div>
+
           <div class="form-group">
             <label for="exampleInputFile">تصویر محصول</label>
             <input name="image" type="file" id="exampleInputFile">
-
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">فایل محصول</label>
+            <input name="file" type="file" id="exampleInputFile">
           </div>
           <div class="form-group">
             <label for="exampleInputFile">توضیحات محصول</label>
