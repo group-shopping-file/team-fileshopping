@@ -27,3 +27,12 @@ Route::group(['namespace'=>'admin','middleware'=>['auth'],'prefix'=>'/admin'],fu
   Route::resource('/filter', 'FilterController');
   Route::resource('/sliderparent', 'SliderparentController');
 });
+
+
+//======================route page site ==================
+Route::group(['namespace'=>'Site'],function(){
+
+  Route::get('/cat/{id}', 'ShowController@showcategory')->name('cat');
+  Route::get('/pro/{id}', 'ShowController@showproduct')->name('pro');
+
+});

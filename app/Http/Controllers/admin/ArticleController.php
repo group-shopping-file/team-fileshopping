@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Article;
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class ArticleController extends AdminController
      */
     public function index()
     {
-      $articles = Article::get()->all());
-      // $categories = Category::latest()->paginate(10);
+      $articles = Article::get()->all();
+      $categories = Category::latest()->paginate(10);
       return view('admin.article.index', compact('articles'));
     }
 

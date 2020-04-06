@@ -25,6 +25,7 @@ class IndexController extends Controller
         $banners = Slider::where('sliderparent_id', 3)->get();
         $education = Category::where('en_name', 'Education')->first();
         $educations = Category::where('chid', $education->id)->get();
+        // var_dump($educations);die;
         $newests = Product::orderBy('created_at', 'desc')->get();
         // dd($technologies);
         return view('welcome', compact('specials','sliders', 'categories', 'bestsellers', 'favorites', 'banners', 'educations', 'newests'));
