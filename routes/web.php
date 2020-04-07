@@ -24,15 +24,19 @@ Route::group(['namespace'=>'admin','middleware'=>['auth'],'prefix'=>'/admin'],fu
   Route::resource('/category', 'CategoryController');
   Route::resource('/producer', 'ProducerController');
   Route::resource('/slider', 'SliderController');
-  Route::resource('/filter', 'FilterController');
+  // Route::resource('/filter', 'FilterController');
   Route::resource('/sliderparent', 'SliderparentController');
 });
 
 
 //======================route page site ==================
-Route::group(['namespace'=>'Site'],function(){
+// Route::group(['namespace'=>'Site'],function(){
 
-  Route::get('/cat/{id}', 'ShowController@showcategory')->name('cat');
-  Route::get('/pro/{id}', 'ShowController@showproduct')->name('pro');
+//   Route::get('/cat/{id}', 'ShowController@showcategory')->name('cat');
+//   Route::get('/pro/{id}', 'ShowController@showproduct')->name('pro');
 
-});
+// });
+
+
+Route::resource('cat', 'CategoryController');
+Route::resource('pro', 'ProductController');

@@ -265,12 +265,12 @@
               <li class="mega-menu dropdown"><a>دسته ها</a>
                 <div class="dropdown-menu">
                   <?php foreach ($categories as $category): ?>
-                    <div class="column col-lg-2 col-md-3"><a href="category.html">{{$category->fa_name}}</a>
+                    <div class="column col-lg-2 col-md-3"><a href="{{ route('cat.show',['cat'=>$category->id]) }}">{{$category->fa_name}}</a>
                       <div>
                         <ul>
                           <?php $cats = App\Category::where('chId', $category->id)->get(); ?>
                           <?php foreach ($cats as $cat): ?>
-                            <li><a href="{{ route('cat',['id',$cat->id]) }}">{{$cat->fa_name}}<span>&rsaquo;</span></a>
+                            <li><a href="{{ route('cat.show',['cat'=>$cat->id]) }}">{{$cat->fa_name}}<span>&rsaquo;</span></a>
                               <div class="dropdown-menu">
                                 <ul>
                                   <li><a href="category.html">زیردسته ها</a></li>
@@ -323,7 +323,7 @@
         <div class="box-category">
           <ul id="cat_accordion">
             <?php foreach ($categories as $category): ?>
-              <li><a href="{{ url('cat/'.$category->id) }}">{{$category->fa_name}}</a> <span class="down"></span>
+              <li><a href="{{ route('cat.show',['cat'=>$category->id]) }}">{{$category->fa_name}}</a> <span class="down"></span>
                 <?php $cats = App\Category::where('chId', $category->id)->get(); ?>
                 <ul>
                   <?php foreach ($cats as $cat): ?>
